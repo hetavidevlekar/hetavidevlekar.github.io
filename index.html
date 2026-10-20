@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Hetavi Devlekar</title>
+<meta name="description" content="Hetavi Devlekar: founder of Kaizen Academy, web developer, and Computer Engineering student in Mumbai, training for private equity.">
+<link rel="canonical" href="https://hetavidevlekar.github.io/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Hetavi Devlekar">
+<meta property="og:description" content="Hetavi Devlekar: founder of Kaizen Academy, web developer, and Computer Engineering student in Mumbai, training for private equity.">
+<meta property="og:url" content="https://hetavidevlekar.github.io/">
+<meta property="og:image" content="https://hetavidevlekar.github.io/assets/hetavi-devlekar.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a single reading column with a left label rail, laid out like a holdings statement. Every project is a line item with a real status. */
+:root{
+  --paper:#F2F4EF;
+  --surface:#FBFCFA;
+  --ink:#16211C;
+  --ink-2:#4B5953;
+  --rule:#D3DBD4;
+  --accent:#1E5B45;
+  --live:#1E7A4F;
+  --build:#8E6110;
+  --idea:#5E6B66;
+  --f-display:'Newsreader', Georgia, 'Times New Roman', serif;
+  --f-body:'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono:'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1512; --surface:#131C18; --ink:#E3EAE5; --ink-2:#9AA8A1; --rule:#25322C;
+    --accent:#7CC4A0; --live:#6FCB97; --build:#D8A64A; --idea:#8C9A94; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1512; --surface:#131C18; --ink:#E3EAE5; --ink-2:#9AA8A1; --rule:#25322C;
+  --accent:#7CC4A0; --live:#6FCB97; --build:#D8A64A; --idea:#8C9A94; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--f-body); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px); z-index:10; background:var(--paper)}
+a{color:var(--accent); text-underline-offset:3px; text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+
+.wrap{
+  max-width:1040px; margin:0 auto;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+}
+
+/* ── sticky index ── */
+.index{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:9;
+  background:var(--paper); border-bottom:1px solid var(--rule);
+}
+.index .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:12px}
+.mark{font-family:var(--f-display); font-weight:600; font-size:18px; color:var(--ink); text-decoration:none; letter-spacing:-.01em}
+.index nav{display:flex; gap:20px; flex-wrap:wrap}
+.index nav a{font-family:var(--f-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-2); text-decoration:none}
+.index nav a:hover{color:var(--accent)}
+.index nav a.nav-cta{color:var(--accent); font-weight:500}
+
+/* ── header ── */
+.head{padding-block:64px 56px; border-bottom:1px solid var(--rule)}
+.head-grid{display:grid; grid-template-columns:minmax(0,280px) minmax(0,1fr);
+  grid-template-areas:"photo id" "photo bio"; column-gap:56px; row-gap:0; align-items:start}
+.portrait{grid-area:photo}
+.head-id{grid-area:id; min-width:0; align-self:end}
+.head-bio{grid-area:bio; min-width:0; align-self:start}
+.portrait{margin:0; position:relative; max-width:100%; isolation:isolate}
+.portrait img{display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; object-position:50% 20%;
+  border-radius:2px; filter:saturate(.92)}
+.portrait::after{content:""; position:absolute; inset:12px -12px -12px 12px; border:1px solid var(--accent); border-radius:2px; z-index:-1}
+@media (max-width:820px){
+  .head-grid{grid-template-columns:minmax(0,220px) minmax(0,1fr); grid-template-areas:"photo id" "bio bio"; column-gap:32px; row-gap:32px; align-items:center}
+  .head-id{align-self:center}
+  .head-id .roles{margin-bottom:0}
+}
+@media (max-width:560px){
+  .head-grid{grid-template-columns:minmax(0,38%) minmax(0,1fr); column-gap:22px; row-gap:26px}
+  .head-id h1{font-size:clamp(30px,8.5vw,40px); margin-bottom:12px}
+  .head-id .roles{font-size:16px}
+  .head-id .kicker{font-size:10px; margin-bottom:10px}
+  .portrait::after{inset:8px -8px -8px 8px}
+}
+.kicker{font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2); margin:0 0 18px}
+h1{
+  font-family:var(--f-display); font-weight:500; font-size:clamp(44px,8vw,84px);
+  line-height:1; letter-spacing:-.025em; margin:0 0 22px; text-wrap:balance;
+}
+.roles{font-family:var(--f-display); font-size:clamp(20px,2.6vw,26px); line-height:1.35; color:var(--ink); margin:0 0 18px; max-width:30ch; text-wrap:balance}
+.roles em{font-style:italic; color:var(--accent)}
+.thesis{color:var(--ink-2); max-width:60ch; margin:0 0 28px; font-size:17px}
+.links{display:flex; flex-wrap:wrap; gap:12px}
+.btn{
+  display:inline-flex; align-items:center; gap:8px; font-family:var(--f-body); font-weight:500; font-size:14px;
+  padding:10px 16px; border:1px solid var(--ink); color:var(--ink); text-decoration:none; border-radius:2px;
+  transition:background .2s, color .2s;
+}
+.btn:hover{background:var(--ink); color:var(--paper)}
+.btn.primary{background:var(--accent); border-color:var(--accent); color:var(--paper)}
+.btn.primary:hover{background:var(--ink); border-color:var(--ink)}
+
+/* ── sections ── */
+.sec{display:grid; grid-template-columns:170px minmax(0,1fr); gap:40px; padding-block:56px; border-bottom:1px solid var(--rule)}
+.sec > h2{
+  font-family:var(--f-mono); font-weight:500; font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-2); margin:6px 0 0;
+}
+.sec-body{min-width:0}
+.lede{font-family:var(--f-display); font-size:clamp(20px,2.3vw,24px); line-height:1.4; margin:0 0 28px; max-width:36ch; text-wrap:balance}
+
+/* now list */
+.now{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 40px; margin:0; padding:0; list-style:none}
+.now li{min-width:0}
+.now h3{font-family:var(--f-display); font-weight:600; font-size:20px; margin:0 0 6px}
+.now p{margin:0; color:var(--ink-2); font-size:15px}
+.tag{font-family:var(--f-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:6px}
+
+/* ledger */
+.summary{font-family:var(--f-mono); font-size:13px; color:var(--ink-2); margin:0 0 32px; font-variant-numeric:tabular-nums}
+.summary b{color:var(--ink); font-weight:500}
+.group{margin:0 0 44px}
+.group:last-child{margin-bottom:0}
+.group-head{display:flex; align-items:baseline; justify-content:space-between; gap:12px; border-bottom:1px solid var(--ink); padding-bottom:8px; margin-bottom:4px}
+.group-head h3{font-family:var(--f-display); font-weight:600; font-size:22px; margin:0}
+.group-head span{font-family:var(--f-mono); font-size:12px; color:var(--ink-2); font-variant-numeric:tabular-nums}
+.ledger{list-style:none; margin:0; padding:0}
+.row{
+  display:grid; grid-template-columns:minmax(0,1fr) 200px 92px; gap:20px; align-items:baseline;
+  padding-block:16px; border-bottom:1px solid var(--rule);
+}
+.row h4{font-family:var(--f-body); font-weight:600; font-size:16px; margin:0 0 3px}
+.row h4 a{color:var(--ink)}
+.row h4 a:hover{color:var(--accent)}
+.row p{margin:0; color:var(--ink-2); font-size:14.5px; max-width:62ch}
+.meta{font-family:var(--f-mono); font-size:12px; color:var(--ink-2); line-height:1.5}
+.chip{
+  justify-self:end; font-family:var(--f-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+  padding:2px 8px; border:1px solid currentColor; border-radius:2px; white-space:nowrap;
+}
+.chip.live{color:var(--live)}
+.chip.done{color:var(--ink)}
+.chip.build{color:var(--build)}
+.chip.idea{color:var(--idea); border-style:dashed}
+.chip.retired{color:var(--idea); text-decoration:line-through}
+
+/* training */
+.tracks{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:40px}
+.track{min-width:0}
+.track h3{font-family:var(--f-display); font-weight:600; font-size:22px; margin:0 0 4px}
+.track .sub{font-family:var(--f-mono); font-size:12px; color:var(--ink-2); margin:0 0 16px; letter-spacing:.04em}
+.track ul{list-style:none; margin:0; padding:0; border-top:1px solid var(--rule)}
+.track li{padding-block:12px; border-bottom:1px solid var(--rule); font-size:15px}
+.track li b{font-weight:600; display:block}
+.track li span{color:var(--ink-2); font-size:14px}
+
+/* about */
+.about p{margin:0 0 16px; max-width:62ch}
+.outside{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; padding:0; list-style:none}
+.outside li{font-size:14px; padding:4px 12px; border:1px solid var(--rule); border-radius:2px; background:var(--surface)}
+
+/* contact */
+.resume{margin:0; max-width:820px}
+.resume img{display:block; width:100%; height:auto; background:#fff; border:1px solid var(--rule); border-radius:2px;
+  box-shadow:0 1px 2px rgba(0,0,0,.04), 0 12px 32px -12px rgba(22,33,28,.18)}
+.reach{margin:0; border-top:1px solid var(--ink)}
+.reach-row{display:grid; grid-template-columns:110px minmax(0,1fr); gap:16px; align-items:baseline; padding-block:14px; border-bottom:1px solid var(--rule)}
+.reach dt{font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-2)}
+.reach dd{margin:0; display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; min-width:0}
+.reach .val{font-size:16px; color:var(--ink); overflow-wrap:anywhere; user-select:all}
+.reach .val:hover{color:var(--accent)}
+.copy{font-family:var(--f-body); font-size:12px; color:var(--accent); background:none; border:1px solid var(--rule);
+  border-radius:2px; padding:2px 10px; cursor:pointer}
+.copy:hover{border-color:var(--accent)}
+@media (max-width:480px){ .reach-row{grid-template-columns:minmax(0,1fr); gap:4px} .index nav a.hide-xs{display:none} }
+footer{padding-block:28px 40px; font-family:var(--f-mono); font-size:12px; color:var(--ink-2)}
+
+/* ── responsive ── */
+@media (max-width:820px){
+  .sec{grid-template-columns:minmax(0,1fr); gap:20px; padding-block:44px}
+  .row{grid-template-columns:minmax(0,1fr) auto; gap:6px 16px}
+  .row .meta{grid-column:1 / -1; grid-row:2}
+  .row .chip{grid-column:2; grid-row:1}
+}
+@media (max-width:620px){
+  .now, .tracks{grid-template-columns:minmax(0,1fr)}
+  .index nav{gap:14px}
+  .index nav a.hide-sm{display:none}
+  .mark{white-space:nowrap; font-size:16px}
+  .head{padding-block:48px 40px}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important; scroll-behavior:auto!important} }
+html{scroll-behavior:smooth; scroll-padding-top:64px}
+</style>
+</head>
+<body>
+<header class="index">
+  <div class="wrap">
+    <a class="mark" href="#top">Hetavi Devlekar</a>
+    <nav aria-label="Sections">
+      <a href="#now" class="hide-sm">Now</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#training" class="hide-xs">Training</a>
+      <a href="#about" class="hide-sm">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#resume" class="nav-cta">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="head">
+    <div class="wrap head-grid">
+      <figure class="portrait">
+        <img src="assets/hetavi-devlekar.jpg" alt="Portrait of Hetavi Devlekar" width="640" height="793">
+      </figure>
+      <div class="head-id">
+        <p class="kicker">Mumbai · Computer Engineering, University of Mumbai</p>
+        <h1>Hetavi Devlekar</h1>
+        <p class="roles">Founder of Kaizen Academy. Web developer. <em>Aspiring private equity investor and quant.</em></p>
+      </div>
+      <div class="head-bio">
+        <p class="thesis">I like owning what I build. I started a coaching academy, run a small web development studio for Mumbai businesses, and test new ventures on the side. Now I'm training to invest in companies with the same owner's eye: accounting, investment memos, and probability.</p>
+        <div class="links">
+          <a class="btn primary" href="#resume">Resume</a>
+          <a class="btn" href="https://www.linkedin.com/in/hetavi-devlekar-311613268/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn" href="https://github.com/hetavidevlekar" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn" href="https://demodashboard-eight.vercel.app" target="_blank" rel="noopener">Kaizen Portal, live ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- NOW -->
+    <section class="sec" id="now">
+      <h2>Now</h2>
+      <div class="sec-body">
+        <ul class="now">
+          <li>
+            <span class="tag">Primary track</span>
+            <h3>Private equity</h3>
+            <p>Learning accounting from the ground up and writing investment memos on real companies.</p>
+          </li>
+          <li>
+            <span class="tag">Continuing</span>
+            <h3>Quant practice</h3>
+            <p>Working through Harvard's Stat 110 probability lectures and drilling mental math on Zetamac.</p>
+          </li>
+          <li>
+            <span class="tag">Building</span>
+            <h3>Strength in Her</h3>
+            <p>Co-founder of a cycle-aware wellness app for women. I'm designing it, building the React prototype, and running the brand.</p>
+          </li>
+          <li>
+            <span class="tag">College</span>
+            <h3>Second year, Computer Engineering</h3>
+            <p>Shah &amp; Anchor Kutchhi Engineering College, University of Mumbai. Graduating 2029.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="sec" id="portfolio">
+      <h2>Portfolio</h2>
+      <div class="sec-body">
+        <p class="lede">Everything I've built, shipped, or am testing, with an honest status on each.</p>
+        <p class="summary" id="summary"></p>
+
+        <div class="group">
+          <div class="group-head"><h3>Kaizen Academy</h3><span>Founder</span></div>
+          <ul class="ledger">
+            <li class="row" data-s="live">
+              <div><h4><a href="https://www.kaizenacademy.co.in/" target="_blank" rel="noopener">Kaizen Academy ↗</a></h4><p>Coaching centre for grades 5 to 10 across SSC, CBSE, ICSE and IGCSE. I founded it, built its systems, and handed off day-to-day operations so it runs without me at the desk.</p></div>
+              <div class="meta">Mumbai · Education</div>
+              <span class="chip live">Operating</span>
+            </li>
+            <li class="row" data-s="done">
+              <div><h4>Exam and teaching materials</h4><p>Maharashtra Board and CBSE papers, worksheets, teacher notes and test timetables across subjects and grades.</p></div>
+              <div class="meta">Curriculum</div>
+              <span class="chip done">Shipped</span>
+            </li>
+            <li class="row" data-s="retired">
+              <div><h4>White-label portal for coaching centres</h4><p>Tried to sell the Kaizen portal to other centres as SaaS. Owners wouldn't adopt new software, so it didn't sell. That lesson pushed me into client web development.</p></div>
+              <div class="meta">B2B SaaS</div>
+              <span class="chip retired">Retired</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="group">
+          <div class="group-head"><h3>Web development studio</h3><span>Freelance</span></div>
+          <ul class="ledger">
+            <li class="row" data-s="live">
+              <div><h4><a href="https://demodashboard-eight.vercel.app" target="_blank" rel="noopener">Kaizen Parent–Teacher–Student Portal ↗</a></h4><p>Full portal for students, teachers and parents with multi-tenant row-level security. Load tested to 500 students.</p></div>
+              <div class="meta">React · Vite · Supabase · Vercel</div>
+              <span class="chip live">Live</span>
+            </li>
+            <li class="row" data-s="live">
+              <div><h4><a href="https://www.kaizenacademy.co.in/" target="_blank" rel="noopener">Kaizen Academy website ↗</a></h4><p>The academy's public website, kaizenacademy.co.in.</p></div>
+              <div class="meta">Web</div>
+              <span class="chip live">Live</span>
+            </li>
+            <li class="row" data-s="live">
+              <div><h4><a href="https://neemsai-global.vercel.app/" target="_blank" rel="noopener">Neemsai Global website ↗</a></h4><p>Company website for a client.</p></div>
+              <div class="meta">Web · Vercel</div>
+              <span class="chip live">Live</span>
+            </li>
+            <li class="row" data-s="live">
+              <div><h4>Sales system</h4><p>Outreach scripts for WhatsApp, LinkedIn and Instagram, plus sales-call scripts. Prospected clients in Dubai, Singapore and South Africa.</p></div>
+              <div class="meta">Business development</div>
+              <span class="chip live">Running</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="group">
+          <div class="group-head"><h3>Products and ventures</h3><span>Owner</span></div>
+          <ul class="ledger">
+            <li class="row" data-s="build">
+              <div><h4>OracleX</h4><p>Sovereign, on-premise agentic AI workbench running local open-weight models. Started as our team's Smart India Hackathon 2026 entry and is now being built as an internal tool for a real company.</p></div>
+              <div class="meta">React · FastAPI · PostgreSQL · Ollama · LangGraph</div>
+              <span class="chip build">In build</span>
+            </li>
+            <li class="row" data-s="build">
+              <div><h4>Strength in Her · Co-founder</h4><p>Cycle-aware wellness app for women covering movement, nutrition with vrat mode, journaling and community. The idea was mine and I co-founded it. I designed the UI and design system, built the mobile-first React prototype, and run the brand and social media.</p></div>
+              <div class="meta">React · Product design · Brand</div>
+              <span class="chip build">In build</span>
+            </li>
+            <li class="row" data-s="build">
+              <div><h4>Diabetic foot screening insole</h4><p>An insole that flags early foot ulcers from temperature differences between the feet. Hospitals and insurers already pay for amputations, which makes the buyer clear.</p></div>
+              <div class="meta">Medical device</div>
+              <span class="chip build">Building</span>
+            </li>
+            <li class="row" data-s="idea">
+              <div><h4>Student engineer marketplace</h4><p>Vetted student engineers take small, fixed-scope bounties from early Indian startups.</p></div>
+              <div class="meta">Marketplace</div>
+              <span class="chip idea">Concept</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="group">
+          <div class="group-head"><h3>Engineering projects</h3><span>College</span></div>
+          <ul class="ledger">
+            <li class="row" data-s="build">
+              <div><h4>Disk scheduling simulator</h4><p>LOOK and C-LOOK implemented in C with a web-based simulator, compared against approaches from recent research.</p></div>
+              <div class="meta">C · Web · Operating systems</div>
+              <span class="chip build">In progress</span>
+            </li>
+            <li class="row" data-s="build">
+              <div><h4>CPU scheduling simulator</h4><p>SJF and SRTF applied to Android app responsiveness, plus a preemptive Best-Job-First approach from a recent paper.</p></div>
+              <div class="meta">JavaScript · Operating systems</div>
+              <span class="chip build">In progress</span>
+            </li>
+            <li class="row" data-s="build">
+              <div><h4>Emergency vehicle priority traffic system</h4><p>Gives ambulances and fire engines a green corridor at signals. Team project on Arduino UNO.</p></div>
+              <div class="meta">Arduino · Embedded</div>
+              <span class="chip build">In progress</span>
+            </li>
+            <li class="row" data-s="build">
+              <div><h4>8086 plant watering system</h4><p>Algorithm for drip watering twice a day, written in 8086 assembly and C.</p></div>
+              <div class="meta">Assembly · C · Microprocessors</div>
+              <span class="chip build">In progress</span>
+            </li>
+            <li class="row" data-s="build">
+              <div><h4>Network-on-Chip case study</h4><p>NoC design for embedded multi-core systems, written up in staged reports.</p></div>
+              <div class="meta">Embedded systems</div>
+              <span class="chip build">In progress</span>
+            </li>
+            <li class="row" data-s="done">
+              <div><h4>E-Waste Collection Management System</h4><p>Data structures project aligned to SDG 12.</p></div>
+              <div class="meta">C · Data structures</div>
+              <span class="chip done">Done</span>
+            </li>
+            <li class="row" data-s="done">
+              <div><h4>Crypto price comparison dashboard</h4><p>Compares live coin prices with charts.</p></div>
+              <div class="meta">React · CoinGecko API · Recharts</div>
+              <span class="chip done">Done</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="group">
+          <div class="group-head"><h3>Teaching, research and community</h3><span>Other</span></div>
+          <ul class="ledger">
+            <li class="row" data-s="live">
+              <div><h4>Career counselling</h4><p>One-on-one sessions with students, each followed by a written counselling report.</p></div>
+              <div class="meta">Counselling</div>
+              <span class="chip live">Active</span>
+            </li>
+            <li class="row" data-s="done">
+              <div><h4>AI Tools for Beginners</h4><p>Ten-day workshop for grades 9 and 10.</p></div>
+              <div class="meta">Workshop</div>
+              <span class="chip done">Ran</span>
+            </li>
+            <li class="row" data-s="done">
+              <div><h4>Quantum economics paper</h4><p>Research paper applying ideas from quantum theory to economics.</p></div>
+              <div class="meta">Research</div>
+              <span class="chip done">Written</span>
+            </li>
+            <li class="row" data-s="done">
+              <div><h4>Game nights and book clubs</h4><p>Hosted Bollywood game nights and book clubs.</p></div>
+              <div class="meta">Community</div>
+              <span class="chip done">Hosted</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAINING -->
+    <section class="sec" id="training">
+      <h2>Training</h2>
+      <div class="sec-body">
+        <p class="lede">Private equity is the path I've chosen. Probability stays in the toolkit.</p>
+        <div class="tracks">
+          <div class="track">
+            <h3>Private equity</h3>
+            <p class="sub">PRIMARY TRACK</p>
+            <ul>
+              <li><b>Accounting</b><span>The three statements and how they connect.</span></li>
+              <li><b>Investment memos</b><span>Writing up companies as if pitching them to an investment committee.</span></li>
+              <li><b>Financial modelling</b><span>Building models in place of chasing certifications.</span></li>
+            </ul>
+          </div>
+          <div class="track">
+            <h3>Quant</h3>
+            <p class="sub">CONTINUING</p>
+            <ul>
+              <li><b>Harvard Stat 110</b><span>Probability, lecture by lecture.</span></li>
+              <li><b>Zetamac</b><span>Daily mental arithmetic drills.</span></li>
+              <li><b>Problem solving</b><span>Working toward Putnam-level mathematics.</span></li>
+              <li><b>Data structures in C</b><span>A structured roadmap for technical interviews.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="sec about" id="about">
+      <h2>About</h2>
+      <div class="sec-body">
+        <p>I'm a second-year Computer Engineering student in Mumbai. I care about ownership: building something, running it, and earning from it. That's why my work splits between companies I own, client projects that fund them, and the investing skills to back other founders one day.</p>
+        <p>I'm also curious about quantum computing, neuroscience, psychology and drones, and I keep my notes in an Obsidian Zettelkasten.</p>
+        <p style="margin-bottom:6px; color:var(--ink-2); font-size:14px">Outside work</p>
+        <ul class="outside">
+          <li>Gym</li><li>Table tennis</li><li>Horse riding</li><li>Cooking</li><li>Films</li><li>Fashion</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RESUME -->
+    <section class="sec" id="resume">
+      <h2>Resume</h2>
+      <div class="sec-body">
+        <figure class="resume">
+          <img src="assets/resume.webp" alt="Resume of Hetavi Devlekar: experience as founder of Kaizen Academy and freelance web developer, projects including OracleX and Strength in Her, education at Shah &amp; Anchor Kutchhi Engineering College with a 9.0 first-year CGPA, and skills." width="1588" height="2246" loading="lazy">
+        </figure>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="sec contact" id="contact">
+      <h2>Contact</h2>
+      <div class="sec-body">
+        <p class="lede">Building something, hiring, or investing? Reach me on any of these.</p>
+        <dl class="reach">
+          <div class="reach-row">
+            <dt>Email</dt>
+            <dd><a href="mailto:hetavi.devlekar@gmail.com" class="val">hetavi.devlekar@gmail.com</a>
+              <button type="button" class="copy" data-copy="hetavi.devlekar@gmail.com">Copy</button></dd>
+          </div>
+          <div class="reach-row">
+            <dt>Phone</dt>
+            <dd><a href="tel:+919322221225" class="val">+91 93222 21225</a>
+              <button type="button" class="copy" data-copy="+91 93222 21225">Copy</button></dd>
+          </div>
+          <div class="reach-row">
+            <dt>Resume</dt>
+            <dd><a href="#resume" class="val">View my resume</a></dd>
+          </div>
+          <div class="reach-row">
+            <dt>LinkedIn</dt>
+            <dd><a href="https://www.linkedin.com/in/hetavi-devlekar-311613268/" target="_blank" rel="noopener" class="val">linkedin.com/in/hetavi-devlekar-311613268 ↗</a></dd>
+          </div>
+          <div class="reach-row">
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/hetavidevlekar" target="_blank" rel="noopener" class="val">github.com/hetavidevlekar ↗</a></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <footer>Hetavi Devlekar · Mumbai</footer>
+  </div>
+</main>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.getAttribute('data-copy');
+    function done(){b.textContent='Copied'; setTimeout(function(){b.textContent='Copy';},1600);}
+    function fallback(){var v=b.parentNode.querySelector('.val'); var r=document.createRange(); r.selectNodeContents(v);
+      var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected';
+      setTimeout(function(){b.textContent='Copy';},1600);}
+    try{ navigator.clipboard.writeText(t).then(done,fallback); }catch(e){ fallback(); }
+  });
+});
+(function(){
+  var rows=document.querySelectorAll('.row');
+  var c={live:0,done:0,build:0,idea:0,retired:0};
+  rows.forEach(function(r){var s=r.getAttribute('data-s'); if(c[s]!==undefined) c[s]++;});
+  document.getElementById('summary').innerHTML=
+    '<b>'+rows.length+'</b> projects · <b>'+c.live+'</b> live or running · <b>'+c.done+'</b> shipped · <b>'+c.build+'</b> in progress · <b>'+c.idea+'</b> concepts · <b>'+c.retired+'</b> retired';
+})();
+</script>
+</body>
+</html>
